@@ -1,0 +1,24 @@
+@import "tailwindcss";
+@import "remixicon/fonts/remixicon.css";
+
+@font-face {
+  font-family: "FF-1";
+  src: url("./assets/Fonts/ff-1.woff2");
+}
+
+.custom-font {
+  font-family: "FF-1";
+}
+
+@keyframes jump {
+  0% {
+    transform: translateY(-6px);
+  }
+  100% {
+    transform: translateY(6px);
+  }
+}
+
+.animate-jump {
+  animation: jump 1s ease-in-out alternate-reverse infinite;
+}

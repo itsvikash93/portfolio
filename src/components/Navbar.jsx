@@ -35,7 +35,7 @@ const Navbar = () => {
     }
   };
   return (
-    <div className="w-full absolute z-[999]">
+    <div className="w-full fixed z-[999]">
       <div className="navbar absolute h-22 z-[899] w-full py-3 px-16 pt-10 flex items-center justify-between">
         <div className="logo h-8 overflow-hidden">
           <div ref={logoRef} className="h-full -translate-y-full">
@@ -54,7 +54,9 @@ const Navbar = () => {
 
         <div
           onClick={handleMenuClick}
-          className="absolute bottom-0 left-1/2 -translate-x-1/2 bg-[#DEDCDC] w-14 h-14 p-1 rounded-full flex flex-col items-center justify-center cursor-pointer overflow-hidden"
+          className={`absolute bottom-0 left-1/2 -translate-x-1/2 ${
+            isOpen && "bg-[#DEDCDC]"
+          } w-14 h-14 p-1 rounded-full flex flex-col items-center justify-center cursor-pointer overflow-hidden`}
         >
           <AnimatePresence mode="wait">
             {isOpen ? (

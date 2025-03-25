@@ -135,7 +135,7 @@ const Home = () => {
             ref={hoverImg2}
             src="./imgs/hero2.jpg"
             alt=""
-            className="absolute hidden top-16 right-[45%] origin-bottom-right rotate-[35deg] h-52 w-44 object-cover rounded-md"
+            className="absolute hidden top-16 -right-[15%] origin-bottom-right rotate-[35deg] h-52 w-44 object-cover rounded-md"
           />
           <img
             ref={hoverImg3}

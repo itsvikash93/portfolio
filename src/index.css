@@ -3,11 +3,29 @@
 
 @font-face {
   font-family: "FF-1";
-  src: url("./assets/Fonts/ff-1.woff2");
+  src: url("./Fonts/ff-1.woff2");
 }
 
-.custom-font {
+@font-face {
+  font-family: "FF-3";
+  src: url("./Fonts/ff-3.woff2");
+}
+
+@font-face {
+  font-family: "FF-4";
+  src: url("./Fonts/ff-4.woff2");
+}
+
+.custom-font1 {
   font-family: "FF-1";
+}
+
+.custom-font3 {
+  font-family: "FF-3";
+}
+
+.custom-font4 {
+  font-family: "FF-4";
 }
 
 @keyframes jump {

@@ -1,32 +1,122 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import { motion, AnimatePresence } from "motion/react";
+import gsap from "gsap";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [hover, setHover] = useState(false);
+  const btnRef = useRef();
+  const logoRef = useRef();
+  const handleMenuClick = () => {
+    setIsOpen(() => !isOpen);
+
+    if (!isOpen) {
+      gsap.to(btnRef.current, {
+        opacity: 0,
+        duration: 0.2,
+      });
+      gsap.to(logoRef.current, {
+        y: "13%",
+        // delay: 0.2,
+        duration: 0.6,
+      });
+    }
+    if (isOpen) {
+      gsap.to(btnRef.current, {
+        opacity: 1,
+        delay: 1,
+        duration: 0.3,
+      });
+      gsap.to(logoRef.current, {
+        y: "-100%",
+        delay: 0.6,
+        duration: 0.6,
+      });
+    }
+  };
   return (
     <div className="w-full absolute z-[999]">
       <div className="navbar absolute h-22 z-[899] w-full py-3 px-16 pt-10 flex items-center justify-between">
-        <img src="./logo_vikash_white.png" alt="logo" className="h-8" />
-
-        <div
-          onClick={() => setIsOpen(!isOpen)}
-          className="absolute bottom-2 left-1/2 -translate-x-1/2 bg-[#DEDCDC] w-12 h-12 rounded-full flex items-center justify-center"
-        >
-          <i className="ri-menu-line text-2xl cursor-pointer"></i>
+        <div className="logo h-8 overflow-hidden">
+          <div ref={logoRef} className="h-full -translate-y-full">
+            <img
+              src="./imgs/logo_vikash_black.png"
+              alt="logo"
+              className="h-7"
+            />
+            <img
+              src="./imgs/logo_vikash_white.png"
+              alt="logo"
+              className="h-8"
+            />
+          </div>
         </div>
 
-        <button
-          className={`${
-            isOpen ? "hidden" : "flex"
-          } items-center bg-[#C8C8C8] border-2 border-black px-5 hover:px-1 py-1 rounded-full cursor-pointer group hover:bg-[#000] hover:text-white transition duration-300`}
+        <div
+          onClick={handleMenuClick}
+          className="absolute bottom-0 left-1/2 -translate-x-1/2 bg-[#DEDCDC] w-14 h-14 p-1 rounded-full flex flex-col items-center justify-center cursor-pointer overflow-hidden"
         >
-          <h3 className="text group-hover:ml-5 group-hover:mr-2 my-1">
-            Let's Talk
-          </h3>
-          <span className="relative p-4 rounded-full bg-[#7B919C] hidden group-hover:block transition-all duration-300">
-            <i className="ri-arrow-right-line absolute top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2 text-white"></i>
-          </span>
-        </button>
+          <AnimatePresence mode="wait">
+            {isOpen ? (
+              <motion.div
+                key="close"
+                initial={{ scale: 0, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+                exit={{ scale: 0, opacity: 0 }}
+                transition={{ duration: 0.5, ease: "easeInOut" }}
+              >
+                <img
+                  src="./imgs/close-window.png"
+                  alt=""
+                  className="w-full h-full object-cover"
+                />
+              </motion.div>
+            ) : (
+              <motion.div
+                key="menu"
+                initial={{ scale: 0, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+                exit={{ scale: 0, opacity: 0 }}
+                transition={{ duration: 0.5, ease: "easeInOut" }}
+              >
+                <img
+                  src="./imgs/main-menu.png"
+                  alt=""
+                  className=" w-full h-full object-cover"
+                />
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </div>
+        <AnimatePresence>
+          <motion.div
+            ref={btnRef}
+            onMouseEnter={() => setHover(true)}
+            onMouseLeave={() => setHover(false)}
+            className="border-black rounded-full border-2 overflow-hidden"
+          >
+            <motion.button
+              transition={{ duration: 0.2, ease: "easeOut" }}
+              whileHover={{
+                paddingRight: "42px",
+              }}
+              className="relative flex items-center bg-[#C8C8C8] px-[20px] hover:bg-[#000] hover:text-[#fff] cursor-pointer group transition duration-700 "
+            >
+              <h3 className="custom-font3 my-2">Let's Talk</h3>
+              {hover && (
+                <motion.span
+                  initial={{ scale: 0 }}
+                  animate={{ scale: 1 }}
+                  exit={{ scale: 0 }}
+                  transition={{ duration: 0.3, ease: "easeInOut" }}
+                  className="absolute right-1 flex items-center justify-center w-8 h-8 rounded-full bg-[#7B919C]"
+                >
+                  <i className="ri-arrow-right-line text-white"></i>
+                </motion.span>
+              )}
+            </motion.button>
+          </motion.div>
+        </AnimatePresence>
       </div>
 
       <AnimatePresence>
@@ -35,15 +125,16 @@ const Navbar = () => {
             initial={{ height: 0 }}
             animate={{ height: "100vh" }}
             exit={{ height: 0 }}
+            transition={{ duration: 1, ease: "easeInOut" }}
             className="nav-details absolute z-[99] w-full h-screen top-0 bg-[#191D23] flex overflow-hidden"
           >
-            <div className="left relative h-full w-1/2 text-7xl font-bold uppercase flex flex-col gap-2 items-center justify-center text-[#7B919C]">
+            <div className="left relative h-full w-1/2 text-7xl font-bold uppercase flex flex-col gap-2 items-center justify-center text-[#7B919C] custom-font1">
               <h1 className="hover:text-[#DEDCDC] cursor-pointer">Home</h1>
               <h1 className="hover:text-[#DEDCDC] cursor-pointer">About</h1>
               <h1 className="hover:text-[#DEDCDC] cursor-pointer">Skills</h1>
               <h1 className="hover:text-[#DEDCDC] cursor-pointer">Projects</h1>
               <h1 className="hover:text-[#DEDCDC] cursor-pointer">Contacts</h1>
-              <div className="absolute w-full h-10 bottom-10 font-normal text-base normal-case flex justify-center items-center gap-16">
+              <div className="absolute w-full h-10 bottom-10 font-normal text-base normal-case flex justify-center items-center gap-16 custom-font3">
                 <a href="#" className="hover:text-[#DEDCDC]">
                   LinkedIn
                 </a>
@@ -57,7 +148,7 @@ const Navbar = () => {
             </div>
             <div className="right w-1/2">
               <img
-                src="./hero1.jpg"
+                src="./imgs/hero1.jpg"
                 alt=""
                 className="h-full w-full object-cover"
               />

@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from "react";
 import { ReactLenis, useLenis } from "lenis/react";
-import Home from "./components/Home/Home";
+import Home from "./components/Home";
 import Navbar from "./components/Navbar";
 import About from "./components/About";
 import Projects from "./components/Projects";
@@ -18,13 +18,13 @@ const App = () => {
     if (homeRef.current)
       gsap.to(homeRef.current, {
         scale: 0.9,
-        rotate: 12,
+        rotate: 8,
         scrollTrigger: {
           start: "55% 50%",
           end: "120% 50%",
           trigger: homeRef.current,
           // markers: true,
-          scrub: 2,
+          scrub: 1,
         },
       });
   });
@@ -33,7 +33,7 @@ const App = () => {
     <ReactLenis root>
       <div className=" relative ">
         <Navbar />
-        <div className="overflow-hidden">
+        <div className="overflow-hidden bg-[#57707A]">
           <Home ref={homeRef} />
         </div>
         <About />

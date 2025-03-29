@@ -3,7 +3,6 @@ import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 
 const Home = forwardRef((props, ref) => {
-  const [hover, setHover] = useState(false);
   const xTo = useRef();
   const yTo = useRef();
   const eyeImg = useRef();
@@ -93,7 +92,10 @@ const Home = forwardRef((props, ref) => {
   };
 
   return (
-    <div ref={ref} className="w-full h-screen bg-[#DEDCDC] relative flex items-center justify-center origin-center">
+    <div
+      ref={ref}
+      className="w-full h-screen bg-[#DEDCDC] relative origin-bottom-left flex items-center justify-center"
+    >
       <div className="w-full h-[75%] flex justify-center items-center relative">
         <div className="home-text w-fit h-fit p-3 overflow-hidden flex justify-center items-center gap-5 relative z-[9] -mt-10">
           <h6 className="text-zinc-600 mt-8 custom-font3">Welcome to</h6>
@@ -159,10 +161,10 @@ const Home = forwardRef((props, ref) => {
         </div>
         <div className="">
           <h3 className="text-2xl text-center custom-font3">
-            Bringing brands to life through
+            Designing interactive journeys through
           </h3>
           <h3 className="text-2xl text-center custom-font4">
-            creative web solutions
+            Modern Web Experiences
           </h3>
         </div>
         <div className="">

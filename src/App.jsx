@@ -8,6 +8,7 @@ import Skills from "./components/Skills";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/all";
 import { useGSAP } from "@gsap/react";
+import Education from "./components/Education";
 
 const App = () => {
   gsap.registerPlugin(ScrollTrigger);
@@ -38,6 +39,7 @@ const App = () => {
         </div>
         <About />
         <Projects />
+        <Education />
         <Skills />
 
         {/* #191D23 */}
